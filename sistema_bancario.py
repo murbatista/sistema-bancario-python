@@ -2,6 +2,7 @@
 saldo = 0
 extrato = []
 LIMITE_SAQUES = 3
+LIMITE_SAQUE = 500
 saques_realizados = 0
 
 while True:
@@ -28,6 +29,8 @@ while True:
 
         if valor <= 0:
             print("Valor inválido.")
+        elif valor > LIMITE_SAQUE:
+            print("O valor máximo por saque é R$ 500,00.")
         elif valor > saldo:
             print("Saldo insuficiente.")
         elif saques_realizados >= LIMITE_SAQUES:
