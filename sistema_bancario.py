@@ -1,4 +1,12 @@
 
+def ler_valor(mensagem):
+    try:
+        return float(input(mensagem).replace(",", "."))
+    except ValueError:
+        print("Entrada inválida! Digite um número.")
+        return None
+
+
 def depositar(saldo, valor, extrato):
     if valor > 0:
         saldo += valor
@@ -58,14 +66,18 @@ def main():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            valor = float(input("Valor do depósito: R$ "))
-            saldo, extrato = depositar(saldo, valor, extrato)
+            valor = ler_valor("Valor do depósito: R$ ")
+
+            if valor is not None:
+                saldo, extrato = depositar(saldo, valor, extrato)
 
         elif opcao == "2":
-            valor = float(input("Valor do saque: R$ "))
-            saldo, extrato, numero_saques = sacar(
-                saldo, valor, extrato, numero_saques
-            )
+            valor = ler_valor("Valor do saque: R$ ")
+
+            if valor is not None:
+                saldo, extrato, numero_saques = sacar(
+                    saldo, valor, extrato, numero_saques
+                )
 
         elif opcao == "3":
             exibir_extrato(saldo, extrato)
